@@ -7,7 +7,7 @@ __data_columns = None
 __model = None
 
 def get_estimated_price(location, sft, bhk, bath):
-    with open('D:/ML/Project-1/server/artifacts/bangalore_home_prices_model.pickle','rb')as f:
+    with open('MLP-1/server/artifacts/bangalore_home_prices_model.pickle','rb')as f:
         __model = pickle.load(f)
     try:
         loc_index = __data_columns.index(location.lower())
@@ -23,7 +23,7 @@ def get_estimated_price(location, sft, bhk, bath):
     return round(__model.predict([x])[0],2)
 
 def get_location_names():
-    with open('D:/ML/Project-1/server/artifacts/columns.json','r') as f:
+    with open('MLP-1/server/artifacts/columns.json','r') as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
     return __locations
@@ -33,11 +33,11 @@ def load_saved_artifacts():
     global __locations
     global __model
 
-    with open('D:/ML/Project-1/server/artifacts/columns.json','r') as f:
+    with open('MLP-11/server/artifacts/columns.json','r') as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
     
-    with open('D:/ML/Project-1/server/artifacts/bangalore_home_prices_model.pickle','rb')as f:
+    with open('MLP-1/server/artifacts/bangalore_home_prices_model.pickle','rb')as f:
         __model = pickle.load(f)
     
     print("loading saves artifacts...completed")
